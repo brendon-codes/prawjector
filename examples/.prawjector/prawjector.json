@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "name": "Project 1",
+      "path": "~/projects/project-1",
+      "tabs": [
+        {
+          "launch": "claude"
+	},
+	{
+          "launch": null
+	}
+      ]
+    },
+    {
+      "name": "Project 2",
+      "path": "~/projects/project-2",
+      "tabs": [
+        {
+          "launch": "nvim"
+	},
+	{
+          "launch": "htop"
+	}
+      ]
+    }
+  ]
+}
