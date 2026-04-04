@@ -1,0 +1,59 @@
+---
+import CommandArticle from "#/components/command_article.astro"
+import ConfigurationSection from "#/components/configuration_section.astro"
+import HeroStage from "#/components/hero_stage.astro"
+import InlineText from "#/components/inline_text.astro"
+import SectionBlock from "#/components/section_block.astro"
+import SiteHeader from "#/components/site_header.astro"
+import { site_content } from "#/data/site_content.ts"
+import BaseLayout from "#/layouts/base_layout.astro"
+---
+
+<BaseLayout>
+  <a class="skip_link" href="#main_content">Skip to content</a>
+  <SiteHeader />
+  <main class="page_shell" id="main_content">
+    <HeroStage />
+
+    <SectionBlock header="INSTALL" id="installation">
+      {
+        site_content.installation.methods.map((method) => (
+          <CommandArticle
+            commands={method.commands}
+            notes={method.notes}
+            title={method.title}
+          />
+        ))
+      }
+    </SectionBlock>
+
+    <ConfigurationSection />
+
+    <SectionBlock header="USAGE" id="usage">
+      {
+        site_content.usage.guide_sections.map((section) => (
+          <CommandArticle
+            commands={section.commands}
+            notes={section.notes}
+            title={section.title}
+          />
+        ))
+      }
+    </SectionBlock>
+
+    <SectionBlock header="FAQ" id="faq">
+      <div class="faq_list">
+        {
+          site_content.faq.map((item) => (
+            <details class="faq_item">
+              <summary class="faq_question">{item.question}</summary>
+              <p class="faq_answer">
+                <InlineText text={item.answer} />
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </SectionBlock>
+  </main>
+</BaseLayout>

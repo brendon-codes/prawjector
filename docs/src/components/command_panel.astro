@@ -1,0 +1,11 @@
+---
+type Props = {
+  commands: ReadonlyArray<string>
+}
+
+const { commands } = Astro.props
+---
+
+<div class="command_panel">
+  {commands.map((command) => <code class="command_line">{command}</code>)}
+</div>

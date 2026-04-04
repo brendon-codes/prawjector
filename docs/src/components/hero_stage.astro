@@ -1,0 +1,62 @@
+---
+import InlineText from "#/components/inline_text.astro"
+import ShellFrame from "#/components/shell_frame.astro"
+import { site_content } from "#/data/site_content.ts"
+import { with_base_path } from "#/lib/with_base_path.ts"
+
+const hero_video_id = "hero_video"
+---
+
+<ShellFrame class="anchor_section hero_stage" element="section" id="top">
+  <div class="hero_layout">
+    <h1 class="hero_title">{site_content.hero.title[0]}</h1>
+    <div class="video_frame">
+      <video
+        aria-label={site_content.hero.video_title}
+        class="video_surface"
+        controls
+        id={hero_video_id}
+        muted
+        playsinline
+        poster={with_base_path("/media/usage/prawjector-basic-usage.poster.jpg")}
+        preload="metadata"
+      >
+        <source
+          src={with_base_path("/media/usage/prawjector-basic-usage.mp4")}
+          type="video/mp4"
+        />
+      </video>
+      <button
+        aria-label="Play video"
+        class="video_play_overlay"
+        data-video-id={hero_video_id}
+        data-video-play-overlay
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="video_play_overlay_icon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="hero_cells">
+      {
+        site_content.hero.cells.map((cell) => (
+          <div class="hero_cell">
+            <p class="hero_cell_body">
+              <InlineText text={cell.body} />
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</ShellFrame>
+
+<script>
+  import "#/scripts/hero_video_play_overlay.ts"
+</script>

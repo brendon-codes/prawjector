@@ -1,0 +1,20 @@
+---
+import CommandPanel from "#/components/command_panel.astro"
+import DetailList from "#/components/detail_list.astro"
+
+type Props = {
+  commands: ReadonlyArray<string>
+  notes: ReadonlyArray<string>
+  title: string
+}
+
+const { commands, notes, title } = Astro.props
+---
+
+<article class="surface_panel surface_panel_wide">
+  <div class="surface_heading">
+    <h3 class="surface_title">{title}</h3>
+  </div>
+  <CommandPanel commands={commands} />
+  <DetailList notes={notes} />
+</article>

@@ -1,0 +1,11 @@
+---
+import { split_inline_code } from "#/lib/split_inline_code.ts"
+
+type Props = {
+  text: string
+}
+
+const parts = split_inline_code(Astro.props.text)
+---
+
+{parts.map((part) => (part.is_code ? <code class="inline_code">{part.text}</code> : part.text))}

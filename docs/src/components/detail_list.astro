@@ -1,0 +1,21 @@
+---
+import InlineText from "#/components/inline_text.astro"
+import { join_class_names } from "#/lib/join_class_names.ts"
+
+type Props = {
+  class?: string
+  notes: ReadonlyArray<string>
+}
+
+const { class: class_name, notes } = Astro.props
+---
+
+<ul class={join_class_names("detail_list", class_name)}>
+  {
+    notes.map((note) => (
+      <li class="detail_list_item">
+        <InlineText text={note} />
+      </li>
+    ))
+  }
+</ul>

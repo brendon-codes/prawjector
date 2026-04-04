@@ -1,0 +1,38 @@
+---
+import { Font } from "astro:assets"
+import SiteFooter from "#/components/site_footer.astro"
+import { site_metadata } from "#/lib/site_metadata.ts"
+import { with_base_path } from "#/lib/with_base_path.ts"
+import "#/styles/globals.css"
+
+const canonical_url = new URL(with_base_path("/"), Astro.site)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content={site_metadata.color_scheme} name="color-scheme" />
+    <meta content={site_metadata.theme_color} name="theme-color" />
+    <title>{site_metadata.title}</title>
+    <meta content={site_metadata.description} name="description" />
+    <meta content={site_metadata.robots} name="robots" />
+    <link href={canonical_url} rel="canonical" />
+    <meta content={site_metadata.open_graph.title} property="og:title" />
+    <meta content={site_metadata.open_graph.description} property="og:description" />
+    <meta content={site_metadata.open_graph.site_name} property="og:site_name" />
+    <meta content={site_metadata.open_graph.type} property="og:type" />
+    <meta content={canonical_url} property="og:url" />
+    <meta content={site_metadata.twitter.card} name="twitter:card" />
+    <meta content={site_metadata.twitter.title} name="twitter:title" />
+    <meta content={site_metadata.twitter.description} name="twitter:description" />
+    <Font cssVariable="--font_body" preload />
+    <Font cssVariable="--font_mono" />
+    <Font cssVariable="--font_display" />
+  </head>
+  <body>
+    <slot />
+    <SiteFooter />
+  </body>
+</html>

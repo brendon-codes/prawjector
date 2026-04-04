@@ -1,0 +1,15 @@
+---
+import ShellFrame from "#/components/shell_frame.astro"
+
+type Props = {
+  header: string
+  id: string
+}
+
+const { header, id } = Astro.props
+---
+
+<ShellFrame class="anchor_section section_block" element="section" id={id}>
+  <h2 class="section_title">{header}</h2>
+  <slot />
+</ShellFrame>

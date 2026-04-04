@@ -1,0 +1,39 @@
+---
+import { join_class_names } from "#/lib/join_class_names.ts"
+
+const logo_text = [
+  { character: "P", id: "p-1" },
+  { character: "R", id: "r-1" },
+  { character: "A", id: "a-1" },
+  { character: "W", id: "w-1" },
+  { character: "J", id: "j-1" },
+  { character: "E", id: "e-1" },
+  { character: "C", id: "c-1" },
+  { character: "T", id: "t-1" },
+  { character: "O", id: "o-1" },
+  { character: "R", id: "r-2" },
+] as const
+
+type Props = {
+  compact?: boolean
+  class?: string
+}
+
+const { compact = false, class: class_name } = Astro.props
+---
+
+<div
+  class={join_class_names(
+    "header_lockup",
+    compact ? "text-[clamp(1.4rem,3vw,2rem)]" : "text-[var(--text_logo)]",
+    class_name
+  )}
+>
+  {
+    logo_text.map(({ character }, index) => (
+      <span class="logo_glyph" style={`--logo-index: ${index}`}>
+        {character}
+      </span>
+    ))
+  }
+</div>

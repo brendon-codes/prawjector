@@ -1,0 +1,37 @@
+---
+import GitHubMark from "#/components/github_mark.astro"
+import LogoLockup from "#/components/logo_lockup.astro"
+import ShellFrame from "#/components/shell_frame.astro"
+import { site_content } from "#/data/site_content.ts"
+---
+
+<header class="site_header">
+  <ShellFrame class="site_header_frame shell_frame_dense" element="div">
+    <div class="site_header_bar">
+      <LogoLockup class="site_header_logo" compact />
+      <nav aria-label="Section navigation" class="site_nav">
+        <ul class="site_nav_list">
+          {
+            site_content.nav_items.map((item) => (
+              <li>
+                <a class="technical_link" href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <a
+        aria-label={site_content.header_github.aria_label}
+        class="technical_button site_header_button"
+        href={site_content.header_github.href}
+        rel="noreferrer"
+        target="_blank"
+      >
+        <GitHubMark class="github_mark" />
+        {site_content.header_github.label}
+      </a>
+    </div>
+  </ShellFrame>
+</header>

@@ -1,0 +1,16 @@
+---
+import { join_class_names } from "#/lib/join_class_names.ts"
+
+type Props = {
+  class?: string
+  element?: "div" | "section" | "header" | "main"
+  id?: string
+}
+
+const { class: class_name, element = "div", id } = Astro.props
+const Element = element
+---
+
+<Element class={join_class_names("shell_frame", class_name)} id={id}>
+  <slot />
+</Element>

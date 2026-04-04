@@ -1,0 +1,12 @@
+---
+import ShellFrame from "#/components/shell_frame.astro"
+import { site_content } from "#/data/site_content.ts"
+---
+
+<footer class="site_footer">
+  <ShellFrame class="site_footer_frame shell_frame_dense" element="div">
+    <p class="site_footer_text">
+      {`(c) ${site_content.footer.copyright_year} ${site_content.footer.notice}`}
+    </p>
+  </ShellFrame>
+</footer>

@@ -1,0 +1,58 @@
+---
+import CommandPanel from "#/components/command_panel.astro"
+import DetailList from "#/components/detail_list.astro"
+import InlineText from "#/components/inline_text.astro"
+import SectionBlock from "#/components/section_block.astro"
+import { site_content } from "#/data/site_content.ts"
+
+const { configuration } = site_content
+---
+
+<SectionBlock header="CONFIGURE" id="configuration">
+  <div class="split_surface">
+    <article class="surface_panel">
+      <div class="surface_heading">
+        <h3 class="surface_title">Create and validate config</h3>
+      </div>
+      <CommandPanel
+        commands={[configuration.command, configuration.validation_command]}
+      />
+      <DetailList notes={configuration.notes} />
+    </article>
+
+    <article class="surface_panel">
+      <div class="surface_heading">
+        <h3 class="surface_title">Minimal project config</h3>
+      </div>
+      <pre class="code_surface"><code>{configuration.example}</code></pre>
+    </article>
+  </div>
+
+  <article class="surface_panel surface_panel_wide">
+    <div class="surface_heading">
+      <h3 class="surface_title">{configuration.auto_startup.title}</h3>
+      <p class="detail_body">
+        <InlineText text={configuration.auto_startup.intro} />
+      </p>
+    </div>
+    <DetailList notes={configuration.auto_startup.notes} />
+    <div class="auto_startup_list">
+      {
+        configuration.auto_startup.terminals.map((terminal) => (
+          <section class="detail_card">
+            <div class="surface_heading">
+              <h4 class="surface_title">{terminal.title}</h4>
+              <p class="detail_body">
+                <InlineText text={terminal.description} />
+              </p>
+            </div>
+            <pre class="code_surface"><code>{terminal.config}</code></pre>
+            {terminal.notes.length > 0 ? (
+              <DetailList class="detail_list_spaced" notes={terminal.notes} />
+            ) : null}
+          </section>
+        ))
+      }
+    </div>
+  </article>
+</SectionBlock>
